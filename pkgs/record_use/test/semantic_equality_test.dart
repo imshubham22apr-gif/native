@@ -23,29 +23,31 @@ void main() {
     'package:a/a.dart',
     [Name('SomeClass'), Name('definition1')],
   );
-  const callDefintion1Static = CallWithArguments(
+  const callDefintion1Static = CallReference(
     positionalArguments: [],
     namedArguments: {},
     loadingUnits: [],
   );
-  const callDefintion1Static2 = CallWithArguments(
+  const callDefintion1Static2 = CallReference(
     positionalArguments: [],
     namedArguments: {},
     loadingUnits: [],
   );
-  const callDefinition2Static = CallWithArguments(
+  const callDefinition2Static = CallReference(
     positionalArguments: [],
     namedArguments: {},
     loadingUnits: [],
   );
-  const callDefinition1Tearoff = CallTearoff(
+  const callDefinition1Tearoff = CallReference(
+    positionalArguments: [],
+    namedArguments: {},
     loadingUnits: [],
   );
   const definition1differentLibrary2 = Definition(
     'memory:a/a.dart',
     [Name('definition1')],
   );
-  const callDefintion1StaticDifferentUri = CallWithArguments(
+  const callDefintion1StaticDifferentUri = CallReference(
     positionalArguments: [],
     namedArguments: {},
     loadingUnits: [],
@@ -172,7 +174,7 @@ void main() {
     );
   });
 
-  test('allowTearoffToStaticPromotion', () {
+  test('Tearoff and call with no args are equal (unified)', () {
     final recordings1 = Recordings(
       metadata: metadata,
       calls: {
@@ -187,27 +189,14 @@ void main() {
       },
       instances: const {},
     );
+    // Since tearoffs and calls without const args are unified, they are equal.
     expect(
-      recordings1.semanticEquals(
-        recordings2,
-        allowTearoffToStaticPromotion: true,
-      ),
+      recordings1.semanticEquals(recordings2),
       isTrue,
     );
     expect(
-      recordings1.semanticEquals(
-        recordings2,
-        allowTearoffToStaticPromotion: false,
-      ),
-      isFalse,
-    );
-    // Don't allow downgrading a static call to a tear off.
-    expect(
-      recordings2.semanticEquals(
-        recordings1,
-        allowTearoffToStaticPromotion: true,
-      ),
-      isFalse,
+      recordings2.semanticEquals(recordings1),
+      isTrue,
     );
   });
 
@@ -243,12 +232,12 @@ void main() {
     );
   });
 
-  test('CallWithArguments positional arguments different length', () {
+  test('CallReference positional arguments different length', () {
     final recordings1 = Recordings(
       metadata: metadata,
       calls: {
         definition1: [
-          const CallWithArguments(
+          const CallReference(
             positionalArguments: [IntConstant(1)],
             namedArguments: {},
             loadingUnits: [],
@@ -261,7 +250,7 @@ void main() {
       metadata: metadata,
       calls: {
         definition1: [
-          const CallWithArguments(
+          const CallReference(
             positionalArguments: [IntConstant(1), IntConstant(2)],
             namedArguments: {},
             loadingUnits: [],

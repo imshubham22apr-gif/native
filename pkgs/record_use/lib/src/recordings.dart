@@ -317,9 +317,6 @@ Error: $e
   /// a usage from [expected] cannot be found in `this`, simulating the effect
   /// of a compiler optimizing away a call entirely.
   ///
-  /// If [allowTearoffToStaticPromotion] is `true`, allows an [expected]
-  /// function tear-off to match an `actual` static call.
-  ///
   /// If [allowMoreConstArguments] is `true`, `null` arguments in an `expected`
   /// call are ignored during comparison. This can be used to accommodate
   /// differences in how compilers handle default or optional arguments.
@@ -331,7 +328,6 @@ Error: $e
     Recordings expected, {
     bool expectedIsSubset = false,
     bool allowDeadCodeElimination = false,
-    bool allowTearoffToStaticPromotion = false,
     bool allowMoreConstArguments = false,
     bool allowPromotionOfUnsupported = false,
     bool allowMetadataMismatch = false,
@@ -355,7 +351,6 @@ Error: $e
           // ignore: invalid_use_of_visible_for_testing_member
           a.semanticEquals(
             b,
-            allowTearoffToStaticPromotion: allowTearoffToStaticPromotion,
             allowMoreConstArguments: allowMoreConstArguments,
             allowPromotionOfUnsupported: allowPromotionOfUnsupported,
             uriMapping: uriMapping,

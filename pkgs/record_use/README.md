@@ -60,7 +60,7 @@ void main(List<String> arguments) {
     final calls = uses.calls[methodId] ?? [];
     for (final call in calls) {
       switch (call) {
-        case CallWithArguments(
+        case CallReference(
           positionalArguments: [StringConstant(value: final english), ...],
         ):
           // Shrink a translations file based on all the different translation

@@ -59,12 +59,12 @@ void main() {
       final recordings = Recordings(
         calls: {
           definition: [
-            const CallWithArguments(
+            const CallReference(
               positionalArguments: [constant],
               namedArguments: {},
               loadingUnits: [],
             ),
-            const CallWithArguments(
+            const CallReference(
               positionalArguments: [constant],
               namedArguments: {},
               loadingUnits: [],

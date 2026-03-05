@@ -10,19 +10,19 @@ const loadingUnitFoo = LoadingUnit('dart.foo');
 void main() {
   group('toString', () {
     test('CallWithArguments', () {
-      const call = CallWithArguments(
+      const call = CallReference(
         positionalArguments: [],
         namedArguments: {},
         loadingUnits: [loadingUnitFoo],
       );
       expect(
         call.toString(),
-        'CallWithArguments(loadingUnits: dart.foo)',
+        'CallReference(loadingUnits: dart.foo)',
       );
     });
 
     test('CallWithArguments with multiple args', () {
-      const call = CallWithArguments(
+      const call = CallReference(
         positionalArguments: [NonConstant(), NonConstant()],
         namedArguments: {
           'bar': NonConstant(),
@@ -32,7 +32,7 @@ void main() {
       );
       expect(
         call.toString(),
-        'CallWithArguments(positional: NonConstant(), '
+        'CallReference(positional: NonConstant(), '
         'NonConstant(), named: bar=NonConstant(), '
         'baz=NonConstant(), loadingUnits: dart.foo)',
       );

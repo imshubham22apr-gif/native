@@ -47,7 +47,7 @@ void main() {
     final recordings = Recordings.fromJson(json);
     const definition = Definition('package:a/a.dart', [Name('foo')]);
     final calls = recordings.calls[definition]!;
-    final call = calls[0] as CallWithArguments;
+    final call = calls[0] as CallReference;
 
     expect(call.positionalArguments, hasLength(3));
     expect(call.positionalArguments[0], const IntConstant(42));
@@ -71,7 +71,7 @@ void main() {
     final recordings = Recordings(
       calls: {
         definition: [
-          const CallWithArguments(
+          const CallReference(
             positionalArguments: [
               IntConstant(42),
               UnsupportedConstant('MethodTearoff'),
@@ -137,7 +137,7 @@ void main() {
       metadata: Metadata(comment: 'actual'),
       calls: {
         definition: [
-          const CallWithArguments(
+          const CallReference(
             positionalArguments: [IntConstant(42)],
             namedArguments: {'a': StringConstant('bar')},
             loadingUnits: [loadingUnit1],
@@ -151,7 +151,7 @@ void main() {
       metadata: Metadata(comment: 'expected'),
       calls: {
         definition: [
-          const CallWithArguments(
+          const CallReference(
             positionalArguments: [UnsupportedConstant('MethodTearoff')],
             namedArguments: {'a': UnsupportedConstant('MethodTearoff')},
             loadingUnits: [loadingUnit1],

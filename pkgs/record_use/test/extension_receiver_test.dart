@@ -46,7 +46,7 @@ void main() {
     final recordings = Recordings.fromJson(json);
     const definition = Definition('package:a/a.dart', [Name('foo')]);
     final calls = recordings.calls[definition]!;
-    final call = calls[0] as CallWithArguments;
+    final call = calls[0] as CallReference;
 
     expect(call.receiver, const StringConstant('receiver'));
     expect(call.positionalArguments[0], const IntConstant(42));
@@ -57,7 +57,7 @@ void main() {
     final recordings = Recordings(
       calls: {
         definition: [
-          const CallWithArguments(
+          const CallReference(
             receiver: StringConstant('receiver'),
             positionalArguments: [IntConstant(42)],
             namedArguments: {},
@@ -83,13 +83,15 @@ void main() {
     expect(receiverConst['value'], 'receiver');
   });
 
-  test('CallTearoff with receiver serialization round-trip', () {
+  test('CallReference with no args and receiver serialization round-trip', () {
     const definition = Definition('package:a/a.dart', [Name('foo')]);
     final recordings = Recordings(
       calls: {
         definition: [
-          const CallTearoff(
+          const CallReference(
             receiver: StringConstant('receiver'),
+            positionalArguments: [],
+            namedArguments: {},
             loadingUnits: [loadingUnit1],
           ),
         ],
@@ -106,7 +108,7 @@ void main() {
     final recordingsJson = usesJson['static_calls'] as List;
     final recording = recordingsJson[0] as Map;
     final call = (recording['uses'] as List)[0] as Map;
-    expect(call['type'], 'tearoff');
+    expect(call['type'], 'with_arguments');
     expect(call.containsKey('receiver'), isTrue);
   });
 }

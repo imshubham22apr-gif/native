@@ -26,9 +26,7 @@ export 'src/recordings.dart' show Recordings;
 export 'src/reference.dart'
     show
         CallReference,
-        CallTearoff,
-        CallWithArguments,
-        ConstructorTearoffReference,
         InstanceConstantReference,
         InstanceCreationReference,
         InstanceReference;
+

@@ -33,7 +33,7 @@ final recordedUses = Recordings(
   ),
   calls: {
     callId: [
-      const CallWithArguments(
+      const CallReference(
         positionalArguments: [
           StringConstant('lib_SHA1'),
           BoolConstant(false),
@@ -45,7 +45,7 @@ final recordedUses = Recordings(
         },
         loadingUnits: [loadingUnitOJs],
       ),
-      const CallWithArguments(
+      const CallReference(
         positionalArguments: [
           StringConstant('lib_SHA1'),
           MapConstant([
@@ -106,7 +106,7 @@ final recordedUses2 = Recordings(
   ),
   calls: {
     callId: [
-      const CallWithArguments(
+      const CallReference(
         positionalArguments: [BoolConstant(false), IntConstant(1)],
         namedArguments: {
           'freddy': StringConstant('mercury'),

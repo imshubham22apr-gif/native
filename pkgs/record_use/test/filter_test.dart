@@ -27,7 +27,7 @@ void main() {
     final recordings = Recordings(
       calls: {
         myDefinition: [
-          const CallWithArguments(
+          const CallReference(
             positionalArguments: [otherInstance],
             namedArguments: {},
             loadingUnits: [],
@@ -40,7 +40,7 @@ void main() {
     final filtered = recordings.filter(definitionPackageName: myPackage);
 
     expect(filtered.calls, hasLength(1));
-    final call = filtered.calls[myDefinition]!.first as CallWithArguments;
+    final call = filtered.calls[myDefinition]!.first as CallReference;
     expect(call.positionalArguments.first, isA<UnsupportedConstant>());
     expect(
       (call.positionalArguments.first as UnsupportedConstant).message,
@@ -69,7 +69,7 @@ void main() {
     final recordings = Recordings(
       calls: {
         myDefinition: [
-          const CallWithArguments(
+          const CallReference(
             positionalArguments: [
               ListConstant([otherInstance]),
               MapConstant([MapEntry(StringConstant('key'), otherInstance)]),
@@ -85,7 +85,7 @@ void main() {
     final filtered = recordings.filter(definitionPackageName: myPackage);
 
     expect(filtered.calls, hasLength(1));
-    final call = filtered.calls[myDefinition]!.first as CallWithArguments;
+    final call = filtered.calls[myDefinition]!.first as CallReference;
 
     final list = call.positionalArguments[0] as ListConstant;
     expect(list.value.first, isA<UnsupportedConstant>());
@@ -116,7 +116,7 @@ void main() {
     final recordings = Recordings(
       calls: {
         myDefinition: [
-          const CallWithArguments(
+          const CallReference(
             positionalArguments: [otherEnum],
             namedArguments: {},
             loadingUnits: [],
@@ -129,7 +129,7 @@ void main() {
     final filtered = recordings.filter(definitionPackageName: myPackage);
 
     expect(filtered.calls, hasLength(1));
-    final call = filtered.calls[myDefinition]!.first as CallWithArguments;
+    final call = filtered.calls[myDefinition]!.first as CallReference;
     expect(call.positionalArguments.first, isA<UnsupportedConstant>());
     expect(
       (call.positionalArguments.first as UnsupportedConstant).message,

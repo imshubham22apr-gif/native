@@ -37,7 +37,7 @@ void main() {
       ),
       calls: {
         definition: [
-          const CallWithArguments(
+          const CallReference(
             positionalArguments: [mapConstant],
             namedArguments: {},
             loadingUnits: [LoadingUnit('main.js')],
@@ -107,7 +107,7 @@ void main() {
       ),
       calls: {
         definition: [
-          const CallWithArguments(
+          const CallReference(
             positionalArguments: [complexMap],
             namedArguments: {},
             loadingUnits: [LoadingUnit('main.js')],

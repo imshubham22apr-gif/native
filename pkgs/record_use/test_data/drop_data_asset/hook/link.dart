@@ -40,7 +40,7 @@ void main(List<String> arguments) async {
       print('Checking calls to $methodName...');
       for (final call in calls) {
         switch (call) {
-          case CallWithArguments(
+          case CallReference(
             positionalArguments: [
               IntConstant(value: final v0),
               IntConstant(value: final v1),

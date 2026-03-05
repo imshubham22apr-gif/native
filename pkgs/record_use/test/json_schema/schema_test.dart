@@ -48,19 +48,7 @@ void main() {
     );
   }
 
-  final constructorTearoffDataUri = testDataUri.resolve(
-    'constructor_tearoff.json',
-  );
-  for (final field in constructorTearoffFields) {
-    testField(
-      schemaUri: schemaUri,
-      dataUri: constructorTearoffDataUri,
-      schema: schema,
-      data: allTestData[constructorTearoffDataUri]!,
-      field: field.$1,
-      missingExpectations: field.$2,
-    );
-  }
+
 }
 
 const constNonConstantIndex = 0;
@@ -208,20 +196,7 @@ List<SchemaTestField> constructorInvocationFields = [
   ),
 ];
 
-List<SchemaTestField> constructorTearoffFields = [
-  (
-    ['uses', 'instances', 0, 'uses', 0, 'definition_index'],
-    expectRequiredFieldMissing,
-  ),
-  (
-    ['uses', 'instances', 0, 'uses', 0, 'loading_unit_indices'],
-    expectRequiredFieldMissing,
-  ),
-  (
-    ['uses', 'instances', 0, 'uses', 0, 'type'],
-    expectRequiredFieldMissing,
-  ),
-];
+
 
 void testAllTestData(
   AllTestData allTestData,
